@@ -1,0 +1,54 @@
+﻿@page
+@model Universite.Pages.Courss.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours[0].salle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours[0].DHDebut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours[0].DHFin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours[0].LUE)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Cours) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.salle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DHDebut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DHFin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LUE.Intitule)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CoursID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CoursID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CoursID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

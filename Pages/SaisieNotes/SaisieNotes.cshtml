@@ -1,0 +1,49 @@
+﻿
+@page
+
+@model Universite.Pages.Exemples.ExempleSelectModel
+
+
+@{
+
+    ViewData["Title"] = "ExempleSelect";
+
+}
+
+<h2>Exemple Select</h2>
+
+<p>
+
+    <a asp-page="Create">Exemple de Combo box</a>
+
+</p>
+
+<form method="post">
+
+    <div class="form-group">
+
+        <select asp-for="UeID" class="form-control" asp-items="ViewBag.SelectUesData" ></select>
+        <button type="submit"> charger les notes </button>
+    </div>
+
+
+
+
+
+    @if (Model.UeID != 0)
+    {
+        @foreach (var item in Model.LesEtudiantUeNote)
+        {
+<div class="form-group">
+    @Html.DisplayFor(modelItem => item.etudiant.Nom)
+
+    <input asp-for="@item.etudiant.ID" name="etudiantID" type="hidden" />
+    <input asp-for="@Model.UeIDOld" type="hidden" />
+    <input asp-for="@item.note" name="NoteValeur" class="form-control" />
+    <span asp-validation-for="@item.note" class="text-danger"></span>
+
+</div>
+        }
+    }
+    <input type="submit" value="Save" asp-page-handler="note" class="btn btn-primary" />
+</form>
