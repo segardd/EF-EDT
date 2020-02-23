@@ -1,0 +1,96 @@
+﻿@page
+@model Universite.Pages.EmploiDuTemps.EmploiDuTempsModel
+
+
+    <body>
+   
+                
+        <div id="edt_container">
+            <div class="jour"> </div>
+            <div class="jour">Lundi </div>
+            <div class="jour">Mardi </div>
+            <div class="jour">Mercredi </div>
+            <div class="jour">Jeudi </div>
+            <div class="jour">Vendredi </div>
+            <div class="jour"> Samedi </div>
+            <div id="heures" class="day">
+                @for (int i = 8; i <= 20; i++)
+                {
+                    <div class="line">
+                        <div class="h"><h6>@(i + "h")</h6></div>
+                    </div>
+                }
+            </div>
+            <div id="l" class="day">
+                @if (@Model.MesCrenos.ContainsKey("Monday"))
+                {
+                    @foreach (var creno in @Model.MesCrenos["Monday"])
+                    {
+                        <div class="creno" style="height: @creno.Width.ToString().Replace(",",".")%; top: calc(@creno.Place.ToString().Replace(",",".")% - 1px);">
+                            <h5> RDV </h5>
+                        </div>
+                    }
+                }
+
+            </div>
+
+            <div id="m" class="day">
+                @if (@Model.MesCrenos.ContainsKey("Tuesday"))
+                {
+                    @foreach (var creno in @Model.MesCrenos["Tuesday"])
+                    {
+                        <div class="creno" style="height: @creno.Width.ToString().Replace(",",".")%; top: calc(@creno.Place.ToString().Replace(",",".")% - 1px);">
+                            <h5> RDV </h5>
+                        </div>
+                    }
+                }
+            </div>
+            <div id="me" class="day">
+                @if (@Model.MesCrenos.ContainsKey("Wednesday"))
+                {
+                    @foreach (var creno in @Model.MesCrenos["Wednesday"])
+                    {
+                        <div class="creno" style="height: @creno.Width.ToString().Replace(",",".")%; top: calc(@creno.Place.ToString().Replace(",",".")% - 1px);">
+                            <h5> RDV </h5>
+                        </div>
+                    }
+                }
+            </div>
+            <div id="j" class="day">
+                @if (@Model.MesCrenos.ContainsKey("Thursday"))
+                {
+                    @foreach (var creno in @Model.MesCrenos["Thursday"])
+                    {
+                        <div class="creno" style="height: @creno.Width.ToString().Replace(",",".")%; top: calc(@creno.Place.ToString().Replace(",",".")% - 1px);">
+                            <h5> RDV </h5>
+                        </div>
+                    }
+                }
+            </div>
+            <div id="v" class="day">
+                @if (@Model.MesCrenos.ContainsKey("Friday"))
+                {
+                    @foreach (var creno in @Model.MesCrenos["Friday"])
+                    {
+                        <div class="creno" style="height: @creno.Width.ToString().Replace(",",".")%; top: calc(@creno.Place.ToString().Replace(",",".")% - 1px);">
+                            <h5> RDV </h5>
+                        </div>
+                    }
+                }
+            </div>
+            <div id="s" class="day">
+                @if (@Model.MesCrenos.ContainsKey("Saturday"))
+                {
+                    @foreach (var creno in @Model.MesCrenos["Saturday"])
+                    {
+                        <div class="creno" style="height: @creno.Width.ToString().Replace(",",".")%; top: calc(@creno.Place.ToString().Replace(",",".")% - 1px);">
+                            <h5> RDV </h5>
+                        </div>
+                    }
+                }
+            </div>
+
+        </div>
+
+    </body>
+
