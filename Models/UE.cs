@@ -50,5 +50,7 @@ namespace Universite.Models
         public ICollection<Note> LesNotes { get; set; }
 
         public ICollection<Enseigne> LesEnseigne { get; set; }
+
+        public ICollection<Cours> LesCours { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Universite.Models;
 
 namespace Universite.Data.Migrations
 {
     [DbContext(typeof(UniversiteContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200228205705_UpdateCours2")]
+    partial class UpdateCours2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -441,7 +443,7 @@ namespace Universite.Data.Migrations
             modelBuilder.Entity("Universite.Models.Cours", b =>
                 {
                     b.HasOne("Universite.Models.UE", "LUE")
-                        .WithMany("LesCours")
+                        .WithMany()
                         .HasForeignKey("UEID");
                 });
 

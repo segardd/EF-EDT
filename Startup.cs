@@ -13,6 +13,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Universite.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Universite
 {
@@ -35,6 +36,12 @@ namespace Universite
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<UniversiteContext>();
             services.AddRazorPages();
+            services.AddControllers();
+            //services.AddMvc(option => option.EnableEndpointRouting = false);
+
+            services.AddMvc();
+            services.AddMemoryCache();
+            //services.AddTransient<ICarService, CarService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,13 +64,21 @@ namespace Universite
 
             app.UseRouting();
 
+
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
+
+            //app.UseMvcWithDefaultRoute();
+            /* app.UseEndpoints(endpoints =>
+             {
+                 endpoints.MapRazorPages();
+             });*/
         }
     }
 }

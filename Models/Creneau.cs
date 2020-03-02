@@ -1,51 +1,34 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Universite.Models
 {
-    public class Creneau:Cours
+    [JsonObject(MemberSerialization.OptIn)]
+    public class Creneau
     {
-        public double Width=0;
-        public double Place=0;
+        [JsonProperty]
+        public string id { get; set; }
+        [JsonProperty]
+        public string title { get; set; }
+        [JsonProperty]
+        public DateTime start { get; set; }
+        [JsonProperty]
+        public DateTime end { get; set; }
 
-        public Creneau(Cours cours, int FirstHour, int LastHour)
+        public Creneau() { }
+
+        public Creneau(Cours cours)
         {
+            this.id = cours.UEID.ToString();
+            this.title = cours.LUE.NomComplet;
+            this.start = cours.DHDebut;
+            this.end = cours.DHFin;
 
-                this.CoursID = cours.CoursID;
-                this.salle = cours.salle;
-                this.DHDebut = cours.DHDebut;
-                this.DHFin = cours.DHFin;
-                this.UEID = cours.UEID;
-
-                this.LUE = cours.LUE;
-
-
-            double HD = this.DHDebut.Hour;
-            double MD= this.DHDebut.Minute;
-            HD += MD/60;
-
-            this.Place = ((HD - FirstHour) * 100) / (LastHour - FirstHour);
-
-            TimeSpan gap = this.DHFin.Subtract(this.DHDebut);
-            double floatGap = gap.Hours + (gap.Minutes / 60);
-
-            this.Width = (floatGap * 100) / (LastHour - FirstHour);
         }
 
-        public void UpdateCrenoShape(int FirstHour, int LastHour)
-        {
-            float HD = this.DHDebut.Hour;
-            HD += this.DHDebut.Minute / 60;
 
-            this.Place = (HD * 100) / (LastHour - FirstHour);
-
-            TimeSpan gap = this.DHFin.Subtract(this.DHDebut);
-            float floatGap = gap.Hours;
-            floatGap += gap.Minutes / 60;
-
-            this.Width = (floatGap * 100) / (LastHour - FirstHour);
-        }
     }
 }
