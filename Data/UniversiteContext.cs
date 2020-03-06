@@ -23,5 +23,7 @@ namespace Universite.Models
         public DbSet<Universite.Models.Note> Note { get; set; }
 
         public DbSet<Universite.Models.Cours> Cours { get; set; }
+
+        public DbSet<Universite.Models.Cours> Salle { get; set; }
     }
 }

@@ -13,12 +13,14 @@ namespace Universite.Models
         public int CoursID { get; set; }
 
 
-        public string salle { get; set; }
         public DateTime DHDebut { get; set; }
         public DateTime DHFin { get; set; }
         public int? UEID { get; set; }
 
+        public int? salle{ get; set; }
+
         public UE LUE { get; set; }
+        public Salle LSalle { get; set; }
 
     }
 }

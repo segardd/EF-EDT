@@ -10,6 +10,8 @@
     <Compile Remove="Data\Migrations\20200216120639_reBase.Designer.cs" />
     <Compile Remove="Data\Migrations\20200228212109_linkTry.cs" />
     <Compile Remove="Data\Migrations\20200228212109_linkTry.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306100601_update.cs" />
+    <Compile Remove="Data\Migrations\20200306100601_update.Designer.cs" />
   </ItemGroup>
 
 
