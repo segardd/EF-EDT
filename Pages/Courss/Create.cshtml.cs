@@ -20,18 +20,13 @@ namespace Universite.Pages.Courss
 
         public IActionResult OnGet()
         {
+        ViewData["SalleID"] = new SelectList(_context.Salle, "SalleID", "SalleID");
         ViewData["UEID"] = new SelectList(_context.UE, "ID", "Intitule");
             return Page();
         }
 
         [BindProperty]
         public Cours Cours { get; set; }
-
-        //public DateTime DateCours { get; set; }
-
-
-
-        
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.

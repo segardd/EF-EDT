@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Universite.Models;
 
-namespace Universite.Pages.Etudiants
+namespace Universite.Pages.Salles
 {
     public class DetailsModel : PageModel
     {
@@ -18,7 +18,7 @@ namespace Universite.Pages.Etudiants
             _context = context;
         }
 
-        public Etudiant Etudiant { get; set; }
+        public Salle Salle { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -27,10 +27,9 @@ namespace Universite.Pages.Etudiants
                 return NotFound();
             }
 
-            Etudiant = await _context.Etudiant
-                .Include(e => e.LaFormation).FirstOrDefaultAsync(m => m.ID == id);
+            Salle = await _context.Salle.FirstOrDefaultAsync(m => m.SalleID == id);
 
-            if (Etudiant == null)
+            if (Salle == null)
             {
                 return NotFound();
             }

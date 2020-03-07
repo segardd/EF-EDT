@@ -2,20 +2,23 @@
 @model Universite.Pages.Courss.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    Layout = null;
 }
 
-<h1>Index</h1>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
 <p>
     <a asp-page="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Cours[0].salle)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cours[0].DHDebut)
             </th>
@@ -25,15 +28,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Cours[0].LUE)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours[0].LSalle)
+            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Cours) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.salle)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DHDebut)
             </td>
@@ -44,6 +47,9 @@
                 @Html.DisplayFor(modelItem => item.LUE.Intitule)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.LSalle.SalleID)
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.CoursID">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.CoursID">Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.CoursID">Delete</a>
@@ -52,3 +58,5 @@
 }
     </tbody>
 </table>
+</body>
+</html>

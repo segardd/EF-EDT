@@ -17,7 +17,7 @@ namespace Universite.Models
         public DateTime DHFin { get; set; }
         public int? UEID { get; set; }
 
-        public int? salle{ get; set; }
+        public int? SalleID { get; set; }
 
         public UE LUE { get; set; }
         public Salle LSalle { get; set; }

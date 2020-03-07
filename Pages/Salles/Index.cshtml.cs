@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Universite.Models;
 
-namespace Universite.Pages.Etudiants
+namespace Universite.Pages.Salles
 {
     public class IndexModel : PageModel
     {
@@ -18,12 +18,11 @@ namespace Universite.Pages.Etudiants
             _context = context;
         }
 
-        public IList<Etudiant> Etudiant { get;set; }
+        public IList<Salle> Salle { get;set; }
 
         public async Task OnGetAsync()
         {
-            Etudiant = await _context.Etudiant
-                .Include(e => e.LaFormation).ToListAsync();
+            Salle = await _context.Salle.ToListAsync();
         }
     }
 }

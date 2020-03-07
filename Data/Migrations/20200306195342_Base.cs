@@ -2,7 +2,7 @@
 
 namespace Universite.Data.Migrations
 {
-    public partial class AddSalle : Migration
+    public partial class Base : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -30,7 +30,7 @@ namespace Universite.Data.Migrations
                 {
                     SalleID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    nomSAlle = table.Column<string>(nullable: true)
+                    NomSalle = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

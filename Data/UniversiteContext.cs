@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Universite.Models;
 
 namespace Universite.Models
 {
@@ -24,6 +25,11 @@ namespace Universite.Models
 
         public DbSet<Universite.Models.Cours> Cours { get; set; }
 
-        public DbSet<Universite.Models.Cours> Salle { get; set; }
+        public DbSet<Universite.Models.Salle> Salle { get; set; }
+
+
+
+        
+
     }
 }

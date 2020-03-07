@@ -30,12 +30,14 @@ namespace Universite.Pages.Courss
             }
 
             Cours = await _context.Cours
+                .Include(c => c.LSalle)
                 .Include(c => c.LUE).FirstOrDefaultAsync(m => m.CoursID == id);
 
             if (Cours == null)
             {
                 return NotFound();
             }
+           ViewData["SalleID"] = new SelectList(_context.Salle, "SalleID", "SalleID");
            ViewData["UEID"] = new SelectList(_context.UE, "ID", "Intitule");
             return Page();
         }

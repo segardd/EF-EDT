@@ -10,8 +10,8 @@ using Universite.Models;
 namespace Universite.Data.Migrations
 {
     [DbContext(typeof(UniversiteContext))]
-    [Migration("20200216124445_add-cours")]
-    partial class addcours
+    [Migration("20200306210202_Sauv2")]
+    partial class Sauv2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -234,13 +234,15 @@ namespace Universite.Data.Migrations
                     b.Property<DateTime>("DHFin")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("SalleID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("UEID")
                         .HasColumnType("int");
 
-                    b.Property<string>("salle")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("CoursID");
+
+                    b.HasIndex("SalleID");
 
                     b.HasIndex("UEID");
 
@@ -364,6 +366,21 @@ namespace Universite.Data.Migrations
                     b.ToTable("Note");
                 });
 
+            modelBuilder.Entity("Universite.Models.Salle", b =>
+                {
+                    b.Property<int>("SalleID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NomSalle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("SalleID");
+
+                    b.ToTable("Salle");
+                });
+
             modelBuilder.Entity("Universite.Models.UE", b =>
                 {
                     b.Property<int>("ID")
@@ -382,9 +399,14 @@ namespace Universite.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("SalleID")
+                        .HasColumnType("int");
+
                     b.HasKey("ID");
 
                     b.HasIndex("FormationID");
+
+                    b.HasIndex("SalleID");
 
                     b.ToTable("UE");
                 });
@@ -442,8 +464,12 @@ namespace Universite.Data.Migrations
 
             modelBuilder.Entity("Universite.Models.Cours", b =>
                 {
+                    b.HasOne("Universite.Models.Salle", "LSalle")
+                        .WithMany("LesCours")
+                        .HasForeignKey("SalleID");
+
                     b.HasOne("Universite.Models.UE", "LUE")
-                        .WithMany()
+                        .WithMany("LesCours")
                         .HasForeignKey("UEID");
                 });
 
@@ -483,6 +509,10 @@ namespace Universite.Data.Migrations
                         .HasForeignKey("FormationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("Universite.Models.Salle", null)
+                        .WithMany("LesUE")
+                        .HasForeignKey("SalleID");
                 });
 #pragma warning restore 612, 618
         }

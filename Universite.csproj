@@ -12,6 +12,30 @@
     <Compile Remove="Data\Migrations\20200228212109_linkTry.Designer.cs" />
     <Compile Remove="Data\Migrations\20200306100601_update.cs" />
     <Compile Remove="Data\Migrations\20200306100601_update.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306102204_AddSalle.cs" />
+    <Compile Remove="Data\Migrations\20200306102204_AddSalle.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306140459_updateSalle.cs" />
+    <Compile Remove="Data\Migrations\20200306140459_updateSalle.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306143642_updateSalleAgain.cs" />
+    <Compile Remove="Data\Migrations\20200306143642_updateSalleAgain.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306143824_updateSalleAgain2.cs" />
+    <Compile Remove="Data\Migrations\20200306143824_updateSalleAgain2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306144400_updateSalleAgain3.cs" />
+    <Compile Remove="Data\Migrations\20200306144400_updateSalleAgain3.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306145154_updateSalleAgain4.cs" />
+    <Compile Remove="Data\Migrations\20200306145154_updateSalleAgain4.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306145338_updateSalleAgain5.cs" />
+    <Compile Remove="Data\Migrations\20200306145338_updateSalleAgain5.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306150226_updateSalleAgain6.cs" />
+    <Compile Remove="Data\Migrations\20200306150226_updateSalleAgain6.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306151243_addSalle.cs" />
+    <Compile Remove="Data\Migrations\20200306151243_addSalle.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306194705_JeanEMarre.cs" />
+    <Compile Remove="Data\Migrations\20200306194705_JeanEMarre.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306195824_Sauv.cs" />
+    <Compile Remove="Data\Migrations\20200306195824_Sauv.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306205659_Sauv2.cs" />
+    <Compile Remove="Data\Migrations\20200306205659_Sauv2.Designer.cs" />
   </ItemGroup>
 
 
@@ -24,6 +48,11 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Pages\Etudiants\" />
   </ItemGroup>
 
 </Project>

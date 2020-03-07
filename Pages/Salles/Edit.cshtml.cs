@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Universite.Models;
 
-namespace Universite.Pages.Etudiants
+namespace Universite.Pages.Salles
 {
     public class EditModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace Universite.Pages.Etudiants
         }
 
         [BindProperty]
-        public Etudiant Etudiant { get; set; }
+        public Salle Salle { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,12 @@ namespace Universite.Pages.Etudiants
                 return NotFound();
             }
 
-            Etudiant = await _context.Etudiant
-                .Include(e => e.LaFormation).FirstOrDefaultAsync(m => m.ID == id);
+            Salle = await _context.Salle.FirstOrDefaultAsync(m => m.SalleID == id);
 
-            if (Etudiant == null)
+            if (Salle == null)
             {
                 return NotFound();
             }
-
-           ViewData["FormationID"] = new SelectList(_context.Formation, "ID", "NomComplet");
             return Page();
         }
 
@@ -50,7 +47,7 @@ namespace Universite.Pages.Etudiants
                 return Page();
             }
 
-            _context.Attach(Etudiant).State = EntityState.Modified;
+            _context.Attach(Salle).State = EntityState.Modified;
 
             try
             {
@@ -58,7 +55,7 @@ namespace Universite.Pages.Etudiants
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!EtudiantExists(Etudiant.ID))
+                if (!SalleExists(Salle.SalleID))
                 {
                     return NotFound();
                 }
@@ -71,9 +68,9 @@ namespace Universite.Pages.Etudiants
             return RedirectToPage("./Index");
         }
 
-        private bool EtudiantExists(int id)
+        private bool SalleExists(int id)
         {
-            return _context.Etudiant.Any(e => e.ID == id);
+            return _context.Salle.Any(e => e.SalleID == id);
         }
     }
 }

@@ -23,6 +23,7 @@ namespace Universite.Pages.Courss
         public async Task OnGetAsync()
         {
             Cours = await _context.Cours
+                .Include(c => c.LSalle)
                 .Include(c => c.LUE).ToListAsync();
         }
     }

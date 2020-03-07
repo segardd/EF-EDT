@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Universite.Models;
 
-namespace Universite.Pages.Etudiants
+namespace Universite.Pages.Salles
 {
     public class CreateModel : PageModel
     {
@@ -20,12 +20,11 @@ namespace Universite.Pages.Etudiants
 
         public IActionResult OnGet()
         {
-        ViewData["FormationID"] = new SelectList(_context.Formation, "ID", "NomComplet");
             return Page();
         }
 
         [BindProperty]
-        public Etudiant Etudiant { get; set; }
+        public Salle Salle { get; set; }
 
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for
         // more details see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +35,7 @@ namespace Universite.Pages.Etudiants
                 return Page();
             }
 
-            _context.Etudiant.Add(Etudiant);
+            _context.Salle.Add(Salle);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

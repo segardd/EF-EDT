@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Universite.Models;
 
-namespace Universite.Pages.Etudiants
+namespace Universite.Pages.Salles
 {
     public class DeleteModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace Universite.Pages.Etudiants
         }
 
         [BindProperty]
-        public Etudiant Etudiant { get; set; }
+        public Salle Salle { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,10 +28,9 @@ namespace Universite.Pages.Etudiants
                 return NotFound();
             }
 
-            Etudiant = await _context.Etudiant
-                .Include(e => e.LaFormation).FirstOrDefaultAsync(m => m.ID == id);
+            Salle = await _context.Salle.FirstOrDefaultAsync(m => m.SalleID == id);
 
-            if (Etudiant == null)
+            if (Salle == null)
             {
                 return NotFound();
             }
@@ -45,11 +44,11 @@ namespace Universite.Pages.Etudiants
                 return NotFound();
             }
 
-            Etudiant = await _context.Etudiant.FindAsync(id);
+            Salle = await _context.Salle.FindAsync(id);
 
-            if (Etudiant != null)
+            if (Salle != null)
             {
-                _context.Etudiant.Remove(Etudiant);
+                _context.Salle.Remove(Salle);
                 await _context.SaveChangesAsync();
             }
 

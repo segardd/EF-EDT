@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Universite.Data.Migrations
 {
-    public partial class reBase : Migration
+    public partial class Sauv : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,6 +33,19 @@ namespace Universite.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Formation", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Salle",
+                columns: table => new
+                {
+                    SalleID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomSalle = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Salle", x => x.SalleID);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,7 +79,8 @@ namespace Universite.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Numero = table.Column<string>(nullable: false),
                     Intitule = table.Column<string>(nullable: false),
-                    FormationID = table.Column<int>(nullable: false)
+                    FormationID = table.Column<int>(nullable: false),
+                    SalleID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -77,6 +91,41 @@ namespace Universite.Data.Migrations
                         principalTable: "Formation",
                         principalColumn: "ID",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UE_Salle_SalleID",
+                        column: x => x.SalleID,
+                        principalTable: "Salle",
+                        principalColumn: "SalleID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Cours",
+                columns: table => new
+                {
+                    CoursID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DHDebut = table.Column<DateTime>(nullable: false),
+                    DHFin = table.Column<DateTime>(nullable: false),
+                    UEID = table.Column<int>(nullable: true),
+                    salle = table.Column<int>(nullable: true),
+                    LSalleSalleID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cours", x => x.CoursID);
+                    table.ForeignKey(
+                        name: "FK_Cours_Salle_LSalleSalleID",
+                        column: x => x.LSalleSalleID,
+                        principalTable: "Salle",
+                        principalColumn: "SalleID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Cours_UE_UEID",
+                        column: x => x.UEID,
+                        principalTable: "UE",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -133,6 +182,16 @@ namespace Universite.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Cours_LSalleSalleID",
+                table: "Cours",
+                column: "LSalleSalleID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cours_UEID",
+                table: "Cours",
+                column: "UEID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Enseigne_EnseignantID",
                 table: "Enseigne",
                 column: "EnseignantID");
@@ -161,10 +220,18 @@ namespace Universite.Data.Migrations
                 name: "IX_UE_FormationID",
                 table: "UE",
                 column: "FormationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UE_SalleID",
+                table: "UE",
+                column: "SalleID");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Cours");
+
             migrationBuilder.DropTable(
                 name: "Enseigne");
 
@@ -182,6 +249,9 @@ namespace Universite.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Formation");
+
+            migrationBuilder.DropTable(
+                name: "Salle");
         }
     }
 }

@@ -2,10 +2,17 @@
 @model Universite.Pages.Courss.EditModel
 
 @{
-    ViewData["Title"] = "Edit";
+    Layout = null;
 }
 
-<h1>Edit</h1>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Edit</title>
+</head>
+<body>
 
 <h4>Cours</h4>
 <hr />
@@ -14,11 +21,6 @@
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Cours.CoursID" />
-            <div class="form-group">
-                <label asp-for="Cours.salle" class="control-label"></label>
-                <input asp-for="Cours.salle" class="form-control" />
-                <span asp-validation-for="Cours.salle" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Cours.DHDebut" class="control-label"></label>
                 <input asp-for="Cours.DHDebut" class="form-control" />
@@ -35,6 +37,11 @@
                 <span asp-validation-for="Cours.UEID" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Cours.SalleID" class="control-label"></label>
+                <select asp-for="Cours.SalleID" class="form-control" asp-items="ViewBag.SalleID"></select>
+                <span asp-validation-for="Cours.SalleID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
@@ -48,3 +55,5 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+</body>
+</html>

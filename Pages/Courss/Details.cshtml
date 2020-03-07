@@ -2,21 +2,22 @@
 @model Universite.Pages.Courss.DetailsModel
 
 @{
-    ViewData["Title"] = "Details";
+    Layout = null;
 }
 
-<h1>Details</h1>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
 
 <div>
     <h4>Cours</h4>
     <hr />
     <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cours.salle)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cours.salle)
-        </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cours.DHDebut)
         </dt>
@@ -35,9 +36,17 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Cours.LUE.Intitule)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cours.LSalle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cours.LSalle.SalleID)
+        </dd>
     </dl>
 </div>
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Cours.CoursID">Edit</a> |
     <a asp-page="./Index">Back to List</a>
 </div>
+</body>
+</html>

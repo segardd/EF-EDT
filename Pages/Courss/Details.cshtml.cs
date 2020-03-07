@@ -28,6 +28,7 @@ namespace Universite.Pages.Courss
             }
 
             Cours = await _context.Cours
+                .Include(c => c.LSalle)
                 .Include(c => c.LUE).FirstOrDefaultAsync(m => m.CoursID == id);
 
             if (Cours == null)

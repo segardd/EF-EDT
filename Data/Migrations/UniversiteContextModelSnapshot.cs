@@ -232,18 +232,15 @@ namespace Universite.Data.Migrations
                     b.Property<DateTime>("DHFin")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("LSalleSalleID")
+                    b.Property<int?>("SalleID")
                         .HasColumnType("int");
 
                     b.Property<int?>("UEID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("salle")
-                        .HasColumnType("int");
-
                     b.HasKey("CoursID");
 
-                    b.HasIndex("LSalleSalleID");
+                    b.HasIndex("SalleID");
 
                     b.HasIndex("UEID");
 
@@ -374,7 +371,7 @@ namespace Universite.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("nomSAlle")
+                    b.Property<string>("NomSalle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SalleID");
@@ -466,8 +463,8 @@ namespace Universite.Data.Migrations
             modelBuilder.Entity("Universite.Models.Cours", b =>
                 {
                     b.HasOne("Universite.Models.Salle", "LSalle")
-                        .WithMany()
-                        .HasForeignKey("LSalleSalleID");
+                        .WithMany("LesCours")
+                        .HasForeignKey("SalleID");
 
                     b.HasOne("Universite.Models.UE", "LUE")
                         .WithMany("LesCours")
