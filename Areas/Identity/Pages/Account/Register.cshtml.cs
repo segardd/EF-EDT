@@ -92,7 +92,15 @@ new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                string MailVerif = _context.Enseignant.Where(E => E.Email == Input.Email).FirstOrDefault().Email;
+                string MailVerif = "";
+                try
+                {
+                    MailVerif = _context.Enseignant.Where(E => E.Email == Input.Email).FirstOrDefault().Email;
+                }
+                catch
+                {
+                    ModelState.AddModelError("mail", "Cette Email n'appartient à aucun enseignant");
+                }
                 if (result.Succeeded && MailVerif!="")
                 {
                     result =await  _userManager.AddToRoleAsync(user,Input.Role);
