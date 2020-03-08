@@ -92,8 +92,8 @@ new SelectListItem { Value = rr.Name.ToString(), Text = rr.Name }).ToList();
             {
                 var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                
-                if (result.Succeeded)
+                string MailVerif = _context.Enseignant.Where(E => E.Email == Input.Email).FirstOrDefault().Email;
+                if (result.Succeeded && MailVerif!="")
                 {
                     result =await  _userManager.AddToRoleAsync(user,Input.Role);
                     _logger.LogInformation("User created a new account with password.");

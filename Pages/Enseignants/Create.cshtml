@@ -24,6 +24,11 @@
                 <span asp-validation-for="Enseignant.Prenom" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Enseignant.Email" class="control-label"></label>
+                <input asp-for="Enseignant.Email" class="form-control" />
+                <span asp-validation-for="Enseignant.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
 
                 <div>
 
@@ -38,7 +43,11 @@
                                 @:<tr>
 
 
+
+
                                     @:<td>
+
+
 
 
                                         <input type="checkbox"
@@ -51,7 +60,11 @@
                                     @: </td>
 
 
+
+
                                 @: </tr>
+
+
 
 
                             }

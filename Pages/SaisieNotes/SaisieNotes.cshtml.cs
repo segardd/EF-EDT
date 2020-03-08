@@ -22,7 +22,7 @@ using Universite.Models;
 namespace Universite.Pages.Exemples
 
 {
-    [Authorize (Roles= "Enseignant")]
+    [Authorize(Roles = "Enseignant")]
     public class ExempleSelectModel : PageModel
 
     {

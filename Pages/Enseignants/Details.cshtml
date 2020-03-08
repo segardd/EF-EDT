@@ -24,18 +24,25 @@
             @Html.DisplayFor(model => model.Enseignant.Prenom)
         </dd>
         <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Enseignant.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Enseignant.Email)
+        </dd>
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Enseignant.LesEnseigne)
         </dt>
         <dd class="col-sm-">
             @{
 
-            foreach (var ue in Model.Enseignant.LesEnseigne)
+                foreach (var ue in Model.Enseignant.LesEnseigne)
 
-            {
+                {
 
-            @ue.LUE.NomComplet <br />
+                    @ue.LUE.NomComplet <br />
 
-            }
+                }
 
             }
         </dd>

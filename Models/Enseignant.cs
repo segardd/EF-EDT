@@ -20,6 +20,10 @@ namespace Universite.Models
 
         public String Prenom { get; set; }
 
+        [Required]
+
+        public string Email { get; set; }
+
 
 
         // Lien de navigation
