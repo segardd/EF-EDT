@@ -23,7 +23,7 @@ namespace Universite.Models
         public Creneau(Cours cours)
         {
             this.id = cours.EnseigneID.ToString();
-            //this.title = $"{cours.LUE.NomComplet}-{cours.LSalle.NomSalle}-{cours.LUE.LesEnseigne}-{cours.}";
+            this.title = $"{cours.LEnseigne.LUE.Intitule}-{cours.LSalle.NomSalle}-{cours.LEnseigne.LEnseignant.Nom} {cours.LEnseigne.LEnseignant.Prenom}";
             this.start = cours.DHDebut;
             this.end = cours.DHFin;
 

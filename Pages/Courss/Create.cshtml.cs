@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using Universite.Models;
 
 namespace Universite.Pages.Courss
@@ -20,7 +21,7 @@ namespace Universite.Pages.Courss
 
         public IActionResult OnGet()
         {
-        ViewData["EnseigneID"] = new SelectList(_context.Set<Enseigne>(), "EnseigneID", "LEnseignant");
+        ViewData["EnseigneID"] = new SelectList(_context.Enseigne.Include(e => e.LUE).Include(e => e.LEnseignant).ToList(), "EnseigneID", "Intitule");
         ViewData["SalleID"] = new SelectList(_context.Salle, "SalleID", "NomSalle");
         ViewData["GroupeID"] = new SelectList(_context.Groupe, "GroupeID", "NomGroupe");
         ViewData["TypeCoursID"] = new SelectList(_context.Set<TypeCours>(), "TypeCoursID", "Intitule");

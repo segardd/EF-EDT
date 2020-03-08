@@ -27,7 +27,7 @@
                 @Html.DisplayNameFor(model => model.Cours[0].LeGroupe)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cours[0].LEnseigne)
+                @Html.DisplayNameFor(model => model.Cours[0].LEnseigne.Intitule)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cours[0].LSalle)
@@ -51,7 +51,7 @@
                 @Html.DisplayFor(modelItem => item.LeGroupe.NomGroupe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LEnseigne.LEnseignant.Nom)
+                @Html.DisplayFor(modelItem => item.LEnseigne.Intitule)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LSalle.NomSalle)

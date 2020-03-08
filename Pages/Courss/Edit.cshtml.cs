@@ -10,7 +10,7 @@ using Universite.Models;
 
 namespace Universite.Pages.Courss
 {
-    public class EditModel : PageModel
+    public class EditModel : EnseignePageModel
     {
         private readonly Universite.Models.UniversiteContext _context;
 
@@ -39,7 +39,7 @@ namespace Universite.Pages.Courss
             {
                 return NotFound();
             }
-            ViewData["EnseigneID"] = new SelectList(_context.Set<Enseigne>(), "EnseigneID", "LEnseignant");
+            ViewData["EnseigneID"] = new SelectList(_context.Enseigne.Include(e => e.LUE).Include(e => e.LEnseignant).ToList(), "EnseigneID", "Intitule");
             ViewData["SalleID"] = new SelectList(_context.Salle, "SalleID", "NomSalle");
             ViewData["GroupeID"] = new SelectList(_context.Groupe, "GroupeID", "NomGroupe");
             ViewData["TypeCoursID"] = new SelectList(_context.Set<TypeCours>(), "TypeCoursID", "Intitule");

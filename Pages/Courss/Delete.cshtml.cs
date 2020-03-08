@@ -29,10 +29,11 @@ namespace Universite.Pages.Courss
             }
 
             Cours = await _context.Cours
-                .Include(c => c.LEnseigne)
-                .Include(c => c.LSalle)
-                .Include(c => c.LeGroupe)
-                .Include(c => c.LeTypeCours).FirstOrDefaultAsync(m => m.CoursID == id);
+                 .Include(c => c.LEnseigne).ThenInclude(e => e.LEnseignant)
+                 .Include(c => c.LEnseigne).ThenInclude(e => e.LUE)
+                 .Include(c => c.LSalle)
+                 .Include(c => c.LeGroupe)
+                 .Include(c => c.LeTypeCours).FirstOrDefaultAsync(m => m.CoursID == id);
 
             if (Cours == null)
             {

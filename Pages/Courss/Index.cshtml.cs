@@ -23,7 +23,8 @@ namespace Universite.Pages.Courss
         public async Task OnGetAsync()
         {
             Cours = await _context.Cours
-                .Include(c => c.LEnseigne)
+                .Include(c => c.LEnseigne).ThenInclude(e => e.LEnseignant)
+                .Include(c => c.LEnseigne).ThenInclude(e => e.LUE)
                 .Include(c => c.LSalle)
                 .Include(c => c.LeGroupe)
                 .Include(c => c.LeTypeCours).ToListAsync();

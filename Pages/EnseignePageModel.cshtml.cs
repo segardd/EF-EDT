@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 using System.Linq;
 using Universite.Pages.Enseignants;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Universite.Pages
 {
@@ -19,7 +22,19 @@ namespace Universite.Pages
 
         public List<CheckEnseigne> LesCheckEnseigne;
 
+        public SelectList ListEnseigne (UniversiteContext context)
+        {
+            List<Enseigne> MesEnseignes = new List<Enseigne>();
+            List<RenderEnseigne> MesREnseignes = new List<RenderEnseigne>();
+            MesEnseignes = context.Enseigne.Include(e => e.LUE).Include(e => e.LEnseignant).ToList();
+            foreach(Enseigne enseigne in MesEnseignes)
+            {
+                RenderEnseigne monRenderEns = new RenderEnseigne(enseigne);
+                MesREnseignes.Add(monRenderEns);
+            }
+            return new SelectList(MesREnseignes, "EnseigneID", "Intitule");
 
+        }
 
         public void AddEnseigne(UniversiteContext context, Enseignant enseignant)
 

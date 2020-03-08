@@ -17,6 +17,8 @@ namespace Universite.Models
 
         public DbSet<Universite.Models.Enseignant> Enseignant { get; set; }
 
+        public DbSet<Universite.Models.Enseigne> Enseigne { get; set; }
+
         public DbSet<Universite.Models.Formation> Formation { get; set; }
 
         public DbSet<Universite.Models.UE> UE { get; set; }
