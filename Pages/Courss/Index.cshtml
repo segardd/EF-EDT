@@ -48,16 +48,16 @@
                 @Html.DisplayFor(modelItem => item.DHFin)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LeGroupe.GroupeID)
+                @Html.DisplayFor(modelItem => item.LeGroupe.NomGroupe)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LEnseigne.EnseigneID)
+                @Html.DisplayFor(modelItem => item.LEnseigne.LEnseignant.Nom)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LSalle.SalleID)
+                @Html.DisplayFor(modelItem => item.LSalle.NomSalle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LeTypeCours.TypeCoursID)
+                @Html.DisplayFor(modelItem => item.LeTypeCours.Intitule)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CoursID">Edit</a> |

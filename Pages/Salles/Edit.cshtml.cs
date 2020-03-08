@@ -36,7 +36,7 @@ namespace Universite.Pages.Salles
             {
                 return NotFound();
             }
-           ViewData["BatimentID"] = new SelectList(_context.Set<Batiment>(), "BatimentID", "BatimentID");
+           ViewData["BatimentID"] = new SelectList(_context.Set<Batiment>(), "BatimentID", "NomBatiment");
             return Page();
         }
 

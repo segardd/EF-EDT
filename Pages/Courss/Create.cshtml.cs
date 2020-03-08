@@ -20,10 +20,10 @@ namespace Universite.Pages.Courss
 
         public IActionResult OnGet()
         {
-        ViewData["EnseigneID"] = new SelectList(_context.Set<Enseigne>(), "EnseigneID", "EnseigneID");
-        ViewData["SalleID"] = new SelectList(_context.Salle, "SalleID", "SalleID");
-        ViewData["GroupeID"] = new SelectList(_context.Groupe, "GroupeID", "GroupeID");
-        ViewData["TypeCoursID"] = new SelectList(_context.Set<TypeCours>(), "TypeCoursID", "TypeCoursID");
+        ViewData["EnseigneID"] = new SelectList(_context.Set<Enseigne>(), "EnseigneID", "LEnseignant");
+        ViewData["SalleID"] = new SelectList(_context.Salle, "SalleID", "NomSalle");
+        ViewData["GroupeID"] = new SelectList(_context.Groupe, "GroupeID", "NomGroupe");
+        ViewData["TypeCoursID"] = new SelectList(_context.Set<TypeCours>(), "TypeCoursID", "Intitule");
             return Page();
         }
 

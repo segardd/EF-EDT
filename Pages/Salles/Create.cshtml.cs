@@ -20,7 +20,7 @@ namespace Universite.Pages.Salles
 
         public IActionResult OnGet()
         {
-        ViewData["BatimentID"] = new SelectList(_context.Set<Batiment>(), "BatimentID", "BatimentID");
+        ViewData["BatimentID"] = new SelectList(_context.Batiment, "BatimentID", "NomBatiment");
             return Page();
         }
 
