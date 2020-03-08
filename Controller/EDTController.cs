@@ -90,7 +90,7 @@ namespace Universite.Controller
            
 
 
-            LesCrenos =await _context.Cours.Include(c => c.LUE).Where(c=>c.DHDebut.Date >= start && c.DHDebut <=end).ToListAsync();
+            LesCrenos =await _context.Cours.Include(c => c.LUE).Include(c=>c.LSalle).Where(c=>c.DHDebut.Date >= start && c.DHDebut <=end).ToListAsync();
 
             if (LesCrenos.Count != 0)
             {
@@ -128,7 +128,7 @@ namespace Universite.Controller
         }
 
         // GET: api/EDT/5
-        [HttpGet("{id}", Name = "Get")]
+       /* [HttpGet("{id}", Name = "Get")]
         public string Get(int id)
         {
             return "value";
@@ -150,6 +150,6 @@ namespace Universite.Controller
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-        }
+        }*/
     }
 }
