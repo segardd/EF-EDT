@@ -27,6 +27,12 @@ namespace Universite.Models
 
         public DbSet<Universite.Models.Salle> Salle { get; set; }
 
+        public DbSet<Universite.Models.Groupe> Groupe { get; set; }
+
+        public DbSet<Universite.Models.Batiment> Batiment { get; set; }
+
+        public DbSet<Universite.Models.TypeCours> TypeCours { get; set; }
+
 
 
         

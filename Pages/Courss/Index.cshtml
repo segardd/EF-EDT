@@ -24,10 +24,16 @@
                 @Html.DisplayNameFor(model => model.Cours[0].DHFin)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cours[0].LUE)
+                @Html.DisplayNameFor(model => model.Cours[0].LeGroupe)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours[0].LEnseigne)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Cours[0].LSalle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cours[0].LeTypeCours)
             </th>
             <th></th>
         </tr>
@@ -42,10 +48,16 @@
                 @Html.DisplayFor(modelItem => item.DHFin)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.LUE.Intitule)
+                @Html.DisplayFor(modelItem => item.LeGroupe.GroupeID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LEnseigne.EnseigneID)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LSalle.SalleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeTypeCours.TypeCoursID)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.CoursID">Edit</a> |

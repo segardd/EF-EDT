@@ -22,7 +22,8 @@ namespace Universite.Pages.Salles
 
         public async Task OnGetAsync()
         {
-            Salle = await _context.Salle.ToListAsync();
+            Salle = await _context.Salle
+                .Include(s => s.LeBatiment).ToListAsync();
         }
     }
 }

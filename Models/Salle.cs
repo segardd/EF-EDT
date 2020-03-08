@@ -10,6 +10,10 @@ namespace Universite.Models
         public int SalleID { get; set; }
         public string NomSalle { get; set; }
 
+        public int? BatimentID { get; set; }
+
+        public Batiment LeBatiment { get; set; }
+
         public ICollection<UE> LesUE { get; set; }
 
         public ICollection<Cours> LesCours { get; set; }

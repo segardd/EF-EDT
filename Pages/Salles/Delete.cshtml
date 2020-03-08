@@ -23,6 +23,12 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Salle.NomSalle)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Salle.LeBatiment)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Salle.LeBatiment.BatimentID)
+        </dd>
     </dl>
     
     <form method="post">

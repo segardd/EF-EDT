@@ -47,10 +47,12 @@ namespace Universite.Models
 
         public Formation LaFormation { get; set; }
 
+        public ICollection<Groupe> LesGroupes { get; set; }
+
         public ICollection<Note> LesNotes { get; set; }
 
         public ICollection<Enseigne> LesEnseigne { get; set; }
 
-        public ICollection<Cours> LesCours { get; set; }
+        
     }
 }

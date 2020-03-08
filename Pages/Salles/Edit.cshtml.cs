@@ -29,12 +29,14 @@ namespace Universite.Pages.Salles
                 return NotFound();
             }
 
-            Salle = await _context.Salle.FirstOrDefaultAsync(m => m.SalleID == id);
+            Salle = await _context.Salle
+                .Include(s => s.LeBatiment).FirstOrDefaultAsync(m => m.SalleID == id);
 
             if (Salle == null)
             {
                 return NotFound();
             }
+           ViewData["BatimentID"] = new SelectList(_context.Set<Batiment>(), "BatimentID", "BatimentID");
             return Page();
         }
 

@@ -34,8 +34,16 @@
     <Compile Remove="Data\Migrations\20200306194705_JeanEMarre.Designer.cs" />
     <Compile Remove="Data\Migrations\20200306195824_Sauv.cs" />
     <Compile Remove="Data\Migrations\20200306195824_Sauv.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306200228_Sauv.cs" />
+    <Compile Remove="Data\Migrations\20200306200228_Sauv.Designer.cs" />
     <Compile Remove="Data\Migrations\20200306205659_Sauv2.cs" />
     <Compile Remove="Data\Migrations\20200306205659_Sauv2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200306210202_Sauv2.cs" />
+    <Compile Remove="Data\Migrations\20200306210202_Sauv2.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200308151905_ajoutGroupe.cs" />
+    <Compile Remove="Data\Migrations\20200308151905_ajoutGroupe.Designer.cs" />
+    <Compile Remove="Data\Migrations\20200308153945_ajoutGroupeCorrect.cs" />
+    <Compile Remove="Data\Migrations\20200308153945_ajoutGroupeCorrect.Designer.cs" />
   </ItemGroup>
 
 

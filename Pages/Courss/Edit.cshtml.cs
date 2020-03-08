@@ -30,15 +30,19 @@ namespace Universite.Pages.Courss
             }
 
             Cours = await _context.Cours
+                .Include(c => c.LEnseigne)
                 .Include(c => c.LSalle)
-                .Include(c => c.LUE).FirstOrDefaultAsync(m => m.CoursID == id);
+                .Include(c => c.LeGroupe)
+                .Include(c => c.LeTypeCours).FirstOrDefaultAsync(m => m.CoursID == id);
 
             if (Cours == null)
             {
                 return NotFound();
             }
+           ViewData["EnseigneID"] = new SelectList(_context.Set<Enseigne>(), "EnseigneID", "EnseigneID");
            ViewData["SalleID"] = new SelectList(_context.Salle, "SalleID", "SalleID");
-           ViewData["UEID"] = new SelectList(_context.UE, "ID", "Intitule");
+           ViewData["GroupeID"] = new SelectList(_context.Groupe, "GroupeID", "GroupeID");
+           ViewData["TypeCoursID"] = new SelectList(_context.Set<TypeCours>(), "TypeCoursID", "TypeCoursID");
             return Page();
         }
 

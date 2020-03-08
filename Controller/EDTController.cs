@@ -90,7 +90,7 @@ namespace Universite.Controller
            
 
 
-            LesCrenos =await _context.Cours.Include(c => c.LUE).Include(c=>c.LSalle).Where(c=>c.DHDebut.Date >= start && c.DHDebut <=end).ToListAsync();
+            LesCrenos =await _context.Cours.Include(c => c.LEnseigne).Include(c=>c.LSalle).Where(c=>c.DHDebut.Date >= start && c.DHDebut <=end).ToListAsync();
 
             if (LesCrenos.Count != 0)
             {

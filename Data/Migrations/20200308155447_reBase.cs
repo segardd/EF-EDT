@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Universite.Data.Migrations
 {
-    public partial class Sauv : Migration
+    public partial class reBase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -100,46 +100,17 @@ namespace Universite.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cours",
-                columns: table => new
-                {
-                    CoursID = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    DHDebut = table.Column<DateTime>(nullable: false),
-                    DHFin = table.Column<DateTime>(nullable: false),
-                    UEID = table.Column<int>(nullable: true),
-                    salle = table.Column<int>(nullable: true),
-                    LSalleSalleID = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cours", x => x.CoursID);
-                    table.ForeignKey(
-                        name: "FK_Cours_Salle_LSalleSalleID",
-                        column: x => x.LSalleSalleID,
-                        principalTable: "Salle",
-                        principalColumn: "SalleID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Cours_UE_UEID",
-                        column: x => x.UEID,
-                        principalTable: "UE",
-                        principalColumn: "ID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Enseigne",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    EnseigneID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EnseignantID = table.Column<int>(nullable: true),
                     UEID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Enseigne", x => x.ID);
+                    table.PrimaryKey("PK_Enseigne", x => x.EnseigneID);
                     table.ForeignKey(
                         name: "FK_Enseigne_Enseignant_EnseignantID",
                         column: x => x.EnseignantID,
@@ -148,6 +119,26 @@ namespace Universite.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Enseigne_UE_UEID",
+                        column: x => x.UEID,
+                        principalTable: "UE",
+                        principalColumn: "ID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Groupe",
+                columns: table => new
+                {
+                    GroupeID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    NomGroupe = table.Column<string>(nullable: true),
+                    UEID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Groupe", x => x.GroupeID);
+                    table.ForeignKey(
+                        name: "FK_Groupe_UE_UEID",
                         column: x => x.UEID,
                         principalTable: "UE",
                         principalColumn: "ID",
@@ -181,15 +172,55 @@ namespace Universite.Data.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_Cours_LSalleSalleID",
-                table: "Cours",
-                column: "LSalleSalleID");
+            migrationBuilder.CreateTable(
+                name: "Cours",
+                columns: table => new
+                {
+                    CoursID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DHDebut = table.Column<DateTime>(nullable: false),
+                    DHFin = table.Column<DateTime>(nullable: false),
+                    EnseigneID = table.Column<int>(nullable: true),
+                    SalleID = table.Column<int>(nullable: true),
+                    GroupeID = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cours", x => x.CoursID);
+                    table.ForeignKey(
+                        name: "FK_Cours_Enseigne_EnseigneID",
+                        column: x => x.EnseigneID,
+                        principalTable: "Enseigne",
+                        principalColumn: "EnseigneID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Cours_Groupe_GroupeID",
+                        column: x => x.GroupeID,
+                        principalTable: "Groupe",
+                        principalColumn: "GroupeID",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Cours_Salle_SalleID",
+                        column: x => x.SalleID,
+                        principalTable: "Salle",
+                        principalColumn: "SalleID",
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Cours_UEID",
+                name: "IX_Cours_EnseigneID",
                 table: "Cours",
-                column: "UEID");
+                column: "EnseigneID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cours_GroupeID",
+                table: "Cours",
+                column: "GroupeID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cours_SalleID",
+                table: "Cours",
+                column: "SalleID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Enseigne_EnseignantID",
@@ -205,6 +236,11 @@ namespace Universite.Data.Migrations
                 name: "IX_Etudiant_FormationID",
                 table: "Etudiant",
                 column: "FormationID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Groupe_UEID",
+                table: "Groupe",
+                column: "UEID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Note_EtudiantID",
@@ -233,16 +269,19 @@ namespace Universite.Data.Migrations
                 name: "Cours");
 
             migrationBuilder.DropTable(
-                name: "Enseigne");
-
-            migrationBuilder.DropTable(
                 name: "Note");
 
             migrationBuilder.DropTable(
-                name: "Enseignant");
+                name: "Enseigne");
+
+            migrationBuilder.DropTable(
+                name: "Groupe");
 
             migrationBuilder.DropTable(
                 name: "Etudiant");
+
+            migrationBuilder.DropTable(
+                name: "Enseignant");
 
             migrationBuilder.DropTable(
                 name: "UE");

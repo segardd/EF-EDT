@@ -7,7 +7,7 @@ namespace Universite.Models
 {
     public class Enseigne
     {
-        public int ID { get; set; }
+        public int EnseigneID { get; set; }
 
         public int? EnseignantID { get; set; }
 
@@ -16,5 +16,7 @@ namespace Universite.Models
         public Enseignant LEnseignant { get; set; }
 
         public UE LUE { get; set; }
+
+        public ICollection<Cours> LesCours { get; set; }
     }
 }

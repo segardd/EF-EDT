@@ -29,16 +29,28 @@
             @Html.DisplayFor(model => model.Cours.DHFin)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Cours.LUE)
+            @Html.DisplayNameFor(model => model.Cours.LeGroupe)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Cours.LUE.Intitule)
+            @Html.DisplayFor(model => model.Cours.LeGroupe.GroupeID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cours.LEnseigne)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cours.LEnseigne.EnseigneID)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cours.LSalle)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Cours.LSalle.SalleID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cours.LeTypeCours)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cours.LeTypeCours.TypeCoursID)
         </dd>
     </dl>
 </div>

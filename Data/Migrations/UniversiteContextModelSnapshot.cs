@@ -219,6 +219,21 @@ namespace Universite.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Universite.Models.Batiment", b =>
+                {
+                    b.Property<int>("BatimentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NomBatiment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("BatimentID");
+
+                    b.ToTable("Batiment");
+                });
+
             modelBuilder.Entity("Universite.Models.Cours", b =>
                 {
                     b.Property<int>("CoursID")
@@ -232,17 +247,27 @@ namespace Universite.Data.Migrations
                     b.Property<DateTime>("DHFin")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("EnseigneID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("GroupeID")
+                        .HasColumnType("int");
+
                     b.Property<int?>("SalleID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UEID")
+                    b.Property<int?>("TypeCoursID")
                         .HasColumnType("int");
 
                     b.HasKey("CoursID");
 
+                    b.HasIndex("EnseigneID");
+
+                    b.HasIndex("GroupeID");
+
                     b.HasIndex("SalleID");
 
-                    b.HasIndex("UEID");
+                    b.HasIndex("TypeCoursID");
 
                     b.ToTable("Cours");
                 });
@@ -269,7 +294,7 @@ namespace Universite.Data.Migrations
 
             modelBuilder.Entity("Universite.Models.Enseigne", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("EnseigneID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -280,7 +305,7 @@ namespace Universite.Data.Migrations
                     b.Property<int?>("UEID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("EnseigneID");
 
                     b.HasIndex("EnseignantID");
 
@@ -339,6 +364,26 @@ namespace Universite.Data.Migrations
                     b.ToTable("Formation");
                 });
 
+            modelBuilder.Entity("Universite.Models.Groupe", b =>
+                {
+                    b.Property<int>("GroupeID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("NomGroupe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("UEID")
+                        .HasColumnType("int");
+
+                    b.HasKey("GroupeID");
+
+                    b.HasIndex("UEID");
+
+                    b.ToTable("Groupe");
+                });
+
             modelBuilder.Entity("Universite.Models.Note", b =>
                 {
                     b.Property<int>("ID")
@@ -371,12 +416,32 @@ namespace Universite.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("BatimentID")
+                        .HasColumnType("int");
+
                     b.Property<string>("NomSalle")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SalleID");
 
+                    b.HasIndex("BatimentID");
+
                     b.ToTable("Salle");
+                });
+
+            modelBuilder.Entity("Universite.Models.TypeCours", b =>
+                {
+                    b.Property<int>("TypeCoursID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Intitule")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("TypeCoursID");
+
+                    b.ToTable("TypeCours");
                 });
 
             modelBuilder.Entity("Universite.Models.UE", b =>
@@ -462,13 +527,21 @@ namespace Universite.Data.Migrations
 
             modelBuilder.Entity("Universite.Models.Cours", b =>
                 {
+                    b.HasOne("Universite.Models.Enseigne", "LEnseigne")
+                        .WithMany("LesCours")
+                        .HasForeignKey("EnseigneID");
+
+                    b.HasOne("Universite.Models.Groupe", "LeGroupe")
+                        .WithMany("LesCours")
+                        .HasForeignKey("GroupeID");
+
                     b.HasOne("Universite.Models.Salle", "LSalle")
                         .WithMany("LesCours")
                         .HasForeignKey("SalleID");
 
-                    b.HasOne("Universite.Models.UE", "LUE")
+                    b.HasOne("Universite.Models.TypeCours", "LeTypeCours")
                         .WithMany("LesCours")
-                        .HasForeignKey("UEID");
+                        .HasForeignKey("TypeCoursID");
                 });
 
             modelBuilder.Entity("Universite.Models.Enseigne", b =>
@@ -489,6 +562,13 @@ namespace Universite.Data.Migrations
                         .HasForeignKey("FormationID");
                 });
 
+            modelBuilder.Entity("Universite.Models.Groupe", b =>
+                {
+                    b.HasOne("Universite.Models.UE", "LUE")
+                        .WithMany("LesGroupes")
+                        .HasForeignKey("UEID");
+                });
+
             modelBuilder.Entity("Universite.Models.Note", b =>
                 {
                     b.HasOne("Universite.Models.Etudiant", "LEtudiant")
@@ -498,6 +578,13 @@ namespace Universite.Data.Migrations
                     b.HasOne("Universite.Models.UE", "LUe")
                         .WithMany("LesNotes")
                         .HasForeignKey("UEID");
+                });
+
+            modelBuilder.Entity("Universite.Models.Salle", b =>
+                {
+                    b.HasOne("Universite.Models.Batiment", "LeBatiment")
+                        .WithMany("LesSalles")
+                        .HasForeignKey("BatimentID");
                 });
 
             modelBuilder.Entity("Universite.Models.UE", b =>
